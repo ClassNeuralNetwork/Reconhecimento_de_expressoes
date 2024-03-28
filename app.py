@@ -67,7 +67,6 @@ class Faceemotion(VideoTransformerBase):
     
 def main():
     # Face Analysis Application #
-    imagemUfersa = 'resultados\\imagens\\ufersa.jpg'
     st.title("Reconhecimento de Expressões Faciais em tempo real")
     activities = ["Home", "Reconhecimento de face por Webcam", "Resultados"]
     choice = st.sidebar.selectbox("Escolher atividade", activities)
@@ -88,7 +87,6 @@ def main():
                 Projeto desenvolvido na disciplina de Redes Neurais - Curso Engenharia de Software - UFERSA (2023.2)
                 """)
         
-        st.image(imagemUfersa, caption='Campus UFERSA - Pau dos Ferros', use_column_width=True)
 
         st.write("""         
                 Equipe de Desenvolvimento:
@@ -116,8 +114,8 @@ def main():
         st.write("O modelo foi treinado com 28709 imagens e validado com 7178 imagens.")
         st.write("A acurácia do modelo foi de 90%.")
         st.write("Abaixo estão os resultados dos testes feitos após o treinamento do modelo.")
-        
-        testes = ['resultados\imagens\\teste1.png', 'resultados\imagens\\teste2.png', 'resultados\imagens\\teste3.png', 'resultados\imagens\\teste4.png']
+
+        testes = ['resultados\imagens\\teste1.png', 'resultados\imagens\\teste2.png']
 
         st.write("Resultados dos testes feitos após o treinamento do modelo")
         st.image(testes, use_column_width=True)
