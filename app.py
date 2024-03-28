@@ -4,12 +4,13 @@ import streamlit as st
 from tensorflow import keras
 from keras.models import model_from_json
 from keras.preprocessing import image
-from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, WebRtcMode
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase
 from tensorflow.keras.preprocessing.image import img_to_array
 
 
 # load model
 emotion_dict = {0:'Raiva', 1:'Nojo', 2:'Medo', 3 :'Feliz', 4: 'Neutro', 5:'Triste', 6: 'Surpresa'}
+
 # load json and create model
 json_file = open('modelo\emotion_modelcnn90valAcc.json', 'r')
 loaded_model_json = json_file.read()
@@ -45,16 +46,20 @@ class Faceemotion(VideoTransformerBase):
         for (x, y, w, h) in self.faces:
             cv2.rectangle(img=img, pt1=(x, y), pt2=(
                 x + w, y + h), color=(255, 0, 0), thickness=2)
+            
             roi_gray = img_gray[y:y + h, x:x + w]
             roi_gray = cv2.resize(roi_gray, (48, 48), interpolation=cv2.INTER_AREA)
+            
             if np.sum([roi_gray]) != 0:
                 roi = roi_gray.astype('float') / 255.0
                 roi = img_to_array(roi)
                 roi = np.expand_dims(roi, axis=0)
+                
                 prediction = classifier.predict(roi)[0]
                 maxindex = int(np.argmax(prediction))
                 finalout = emotion_dict[maxindex]
                 output = str(finalout)
+                
             label_position = (x, y)
             cv2.putText(img, output, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
