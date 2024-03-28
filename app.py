@@ -12,13 +12,13 @@ from tensorflow.keras.preprocessing.image import img_to_array
 emotion_dict = {0:'Raiva', 1:'Nojo', 2:'Medo', 3 :'Feliz', 4: 'Neutro', 5:'Triste', 6: 'Surpresa'}
 
 # load json and create model
-json_file = open('modelo\emotion_modelcnn90valAcc.json', 'r')
+json_file = open('modelo/emotion_modelcnn90valAcc.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 classifier = model_from_json(loaded_model_json)
 
 # load weights into new model
-classifier.load_weights("modelo\modelo_cnn90valAcc.h5")
+classifier.load_weights("modelo/modelo_cnn90valAcc.h5")
 
 #load face
 try:
