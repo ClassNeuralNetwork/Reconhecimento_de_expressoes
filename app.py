@@ -12,17 +12,17 @@ from tensorflow.keras.preprocessing.image import img_to_array
 emotion_dict = {0:'Raiva', 1:'Nojo', 2:'Medo', 3 :'Feliz', 4: 'Neutro', 5:'Triste', 6: 'Surpresa'}
 
 # load json and create model
-json_file = open('modelo\emotion_modelcnn90valAcc.json', 'r')
+json_file = open('modelo\\emotion_modelcnn90valAcc.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 classifier = model_from_json(loaded_model_json)
 
 # load weights into new model
-classifier.load_weights("modelo\modelo_cnn90valAcc.h5")
+classifier.load_weights("modelo\\modelo_cnn90valAcc.h5")
 
 #load face
 try:
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('modelo\\haarcascade_frontalface_default.xml')
 except Exception:
     st.write("Error loading cascade classifiers")
 
@@ -86,15 +86,13 @@ def main():
                 """)
         
 
-        st.write("""         
-                Equipe de Desenvolvimento:
-
-                Anabel Marinho Soares
-
-                Nicolas Emanuel Alves Costa
-
-                Thiago Luan Moreira Souza 
-                """)
+        st.write("""Equipe de Desenvolvimento:
+                 
+        Anabel Marinho Soares
+                
+    Nicolas Emanuel Alves Costa
+                
+    Thiago Luan Moreira Souza""")
                  
     elif choice == "Reconhecimento de face por Webcam":
         st.header("Webcam ao vivo")
@@ -110,17 +108,17 @@ def main():
         st.subheader("Resultados adiquiridos com a rede neural utilizada")
         st.write("""A rede neural foi treinada com 7 classes de emoções: Raiva, Nojo, Medo, Feliz, Neutro, Triste e Surpresa.
                  
-                 O modelo foi treinado com 28709 imagens e validado com 7178 imagens.
-                 
-                 A acurácia do modelo foi de 90%.""")
+        O modelo foi treinado com 28709 imagens e validado com 7178 imagens.
+    A acurácia do modelo foi de 90%.
+    """)
 
         st.write("""Equipe de Desenvolvimento:
                  
-                 Anabel Marinho Soares
+        Anabel Marinho Soares
                 
-                 Nicolas Emanuel Alves Costa
+    Nicolas Emanuel Alves Costa
                 
-                 Thiago Luan Moreira Souza""")
+    Thiago Luan Moreira Souza""")
       
 
     else:
