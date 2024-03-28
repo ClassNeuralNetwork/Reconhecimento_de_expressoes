@@ -112,23 +112,16 @@ def main():
 
     elif choice == "Resultados":
         st.subheader("Resultados adiquiridos com a rede neural utilizada")
-
-        graficoPerda = 'resultados\imagens\grafico-acuracia.png'
-        graficoAcuracia = 'resultados\imagens\grafico-acuracia.png'
-        matrizConfusao = 'resultados\imagens\matriz-confusao.png'
+        st.write("A rede neural foi treinada com 7 classes de emoções: Raiva, Nojo, Medo, Feliz, Neutro, Triste e Surpresa.")
+        st.write("O modelo foi treinado com 28709 imagens e validado com 7178 imagens.")
+        st.write("A acurácia do modelo foi de 90%.")
+        st.write("Abaixo estão os resultados dos testes feitos após o treinamento do modelo.")
+        
         testes = ['resultados\imagens\\teste1.png', 'resultados\imagens\\teste2.png', 'resultados\imagens\\teste3.png', 'resultados\imagens\\teste4.png']
 
         st.write("Resultados dos testes feitos após o treinamento do modelo")
         st.image(testes, use_column_width=True)
-        
-        st.write("Gráfico de Função de Perda")
-        st.image(graficoPerda, caption='Gráfico da Função Perda recebido após o treinamento do modelo', use_column_width=True)
 
-        st.write("Gráfico de Acurácia")
-        st.image(graficoAcuracia, caption='Gráfico da Função de Acurácia recebido após o treinamento do modelo', use_column_width=True)
-
-        st.write("Matriz de Confusão")
-        st.image(matrizConfusao, caption='Matriz de confusão gerada após o treinamento do modelo', use_column_width=True)
 
         
 
