@@ -18,11 +18,11 @@ json_file.close()
 classifier = model_from_json(loaded_model_json)
 
 # load weights into new model
-classifier.load_weights("modelo\modelo_cnn90valAcc..h5")
+classifier.load_weights("modelo\modelo_cnn90valAcc.h5")
 
 #load face
 try:
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('modelo\haarcascade_frontalface_default.xml')
 except Exception:
     st.write("Error loading cascade classifiers")
 
@@ -67,57 +67,70 @@ class Faceemotion(VideoTransformerBase):
     
 def main():
     # Face Analysis Application #
+    imagemUfersa = 'resultados\\imagens\\ufersa.jpg'
     st.title("Reconhecimento de Expressões Faciais em tempo real")
-    activiteis = ["Home", "Reconhecimento de face por Webcam", "About"]
-    choice = st.sidebar.selectbox("Escolher atividade", activiteis)
+    activities = ["Home", "Reconhecimento de face por Webcam", "Resultados"]
+    choice = st.sidebar.selectbox("Escolher atividade", activities)
     st.sidebar.markdown(
-        """ Desenolvido por:
-            Anabel Marinho Soares
-            Nicolas Emanuel Alves Costa
-            Thiago Luan Moreira Souza    
-              
-            [Github](https://github.com/ClassNeuralNetwork/Reconhecimento_de_expressoes)""")
+        """[Github](https://github.com/ClassNeuralNetwork/Reconhecimento_de_expressoes)""")
     if choice == "Home":
+
+        
+
         html_temp_home1 = """<div style="background-color:#6D7B8D;padding:10px">
                                             <h4 style="color:white;text-align:center;">
-                                            Aplicativo de Detecção facial e Reconhecimento de Expressões Faciais<br>
+                                            Aplicativo de Detecção facial e <br>Reconhecimento de Expressões Faciais<br>
                                             Utilizando OpenCV, um modelo CNN próprio e o Streamlit</h4>
                                             </div>
                                             </br>"""
         st.markdown(html_temp_home1, unsafe_allow_html=True)
         st.write("""
-                 Esse aplicativo tem duas funcionalidades.
+                Projeto desenvolvido na disciplina de Redes Neurais - Curso Engenharia de Software - UFERSA (2023.2)
+                """)
+        
+        st.image(imagemUfersa, caption='Campus UFERSA - Pau dos Ferros', use_column_width=True)
 
-                 1. Detecção de Faces em tempo real.
+        st.write("""         
+                Equipe de Desenvolvimento:
 
-                 2. Reconhecimento de emoções/expressões faciais.
+                Anabel Marinho Soares
 
-                 """)
+                Nicolas Emanuel Alves Costa
+
+                Thiago Luan Moreira Souza 
+                """)
+                 
     elif choice == "Reconhecimento de face por Webcam":
         st.header("Webcam ao vivo")
         st.write("Clique no START para ativar a detecção de face e reconhecimento de emoções")
         webrtc_streamer(key="example",
                         video_processor_factory=Faceemotion)
+        
+        st.write("O modelo de reconhecimento de expressões faciais foi treinado com 7 classes de emoções: Raiva, Nojo, Medo, Feliz, Neutro, Triste e Surpresa.")
 
-    elif choice == "About":
-        st.subheader("Sobre esse app")
-        html_temp_about1= """<div style="background-color:#6D7B8D;padding:10px">
-                                    <h4 style="color:white;text-align:center;">
-                                    Aplicativo de Detecção facial e Reconhecimento de Expressões Faciais<br>
-                                    Utilizando OpenCV, um modelo CNN próprio e o Streamlit</h4>
-                                    </div>
-                                    </br>"""
-        st.markdown(html_temp_about1, unsafe_allow_html=True)
+        st.write("Apesar de não ser 100 por cento preciso, o modelo deve ser capaz de reconhecer a maior parte das expressões que recebe.")
 
-        html_temp4 = """
-                             		<div style="background-color:#98AFC7;padding:10px">
-                             		<h4 style="color:white;text-align:center;">Este aplicativo foi desenvolvido como projeto para a disciplina de Tópicos Especiais de Engenharia de Software (Redes Neurais). (2023.2) </h4>
-                             		<h4 style="color:white;text-align:center;">Obrigado por utilizar</h4>
-                             		</div>
-                             		<br></br>
-                             		<br></br>"""
+    elif choice == "Resultados":
+        st.subheader("Resultados adiquiridos com a rede neural utilizada")
 
-        st.markdown(html_temp4, unsafe_allow_html=True)
+        graficoPerda = 'resultados\imagens\grafico-acuracia.png'
+        graficoAcuracia = 'resultados\imagens\grafico-acuracia.png'
+        matrizConfusao = 'resultados\imagens\matriz-confusao.png'
+        testes = ['resultados\imagens\\teste1.png', 'resultados\imagens\\teste2.png', 'resultados\imagens\\teste3.png', 'resultados\imagens\\teste4.png']
+
+        st.write("Resultados dos testes feitos após o treinamento do modelo")
+        st.image(testes, use_column_width=True)
+        
+        st.write("Gráfico de Função de Perda")
+        st.image(graficoPerda, caption='Gráfico da Função Perda recebido após o treinamento do modelo', use_column_width=True)
+
+        st.write("Gráfico de Acurácia")
+        st.image(graficoAcuracia, caption='Gráfico da Função de Acurácia recebido após o treinamento do modelo', use_column_width=True)
+
+        st.write("Matriz de Confusão")
+        st.image(matrizConfusao, caption='Matriz de confusão gerada após o treinamento do modelo', use_column_width=True)
+
+        
 
     else:
         pass
