@@ -74,8 +74,6 @@ def main():
         """[Github](https://github.com/ClassNeuralNetwork/Reconhecimento_de_expressoes)""")
     if choice == "Home":
 
-        
-
         html_temp_home1 = """<div style="background-color:#6D7B8D;padding:10px">
                                             <h4 style="color:white;text-align:center;">
                                             Aplicativo de Detecção facial e <br>Reconhecimento de Expressões Faciais<br>
@@ -110,18 +108,20 @@ def main():
 
     elif choice == "Resultados":
         st.subheader("Resultados adiquiridos com a rede neural utilizada")
-        st.write("A rede neural foi treinada com 7 classes de emoções: Raiva, Nojo, Medo, Feliz, Neutro, Triste e Surpresa.")
-        st.write("O modelo foi treinado com 28709 imagens e validado com 7178 imagens.")
-        st.write("A acurácia do modelo foi de 90%.")
-        st.write("Abaixo estão os resultados dos testes feitos após o treinamento do modelo.")
+        st.write("""A rede neural foi treinada com 7 classes de emoções: Raiva, Nojo, Medo, Feliz, Neutro, Triste e Surpresa.
+                 
+                 O modelo foi treinado com 28709 imagens e validado com 7178 imagens.
+                 
+                 A acurácia do modelo foi de 90%.""")
 
-        testes = ['resultados\imagens\\teste1.png']
-
-        st.write("Resultados dos testes feitos após o treinamento do modelo")
-        st.image(testes, use_column_width=True)
-
-
-        
+        st.write("""Equipe de Desenvolvimento:
+                 
+                 Anabel Marinho Soares
+                
+                 Nicolas Emanuel Alves Costa
+                
+                 Thiago Luan Moreira Souza""")
+      
 
     else:
         pass
