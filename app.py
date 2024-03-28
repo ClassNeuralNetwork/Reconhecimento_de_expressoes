@@ -22,7 +22,7 @@ classifier.load_weights("modelo\modelo_cnn90valAcc.h5")
 
 #load face
 try:
-    face_cascade = cv2.CascadeClassifier('modelo\haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 except Exception:
     st.write("Error loading cascade classifiers")
 
@@ -115,7 +115,7 @@ def main():
         st.write("A acurácia do modelo foi de 90%.")
         st.write("Abaixo estão os resultados dos testes feitos após o treinamento do modelo.")
 
-        testes = ['resultados\imagens\\teste1.png', 'resultados\imagens\\teste2.png']
+        testes = ['resultados\imagens\\teste1.png']
 
         st.write("Resultados dos testes feitos após o treinamento do modelo")
         st.image(testes, use_column_width=True)
