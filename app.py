@@ -22,7 +22,7 @@ classifier.load_weights("modelo/modelo_cnn90valAcc.h5")
 
 #load face
 try:
-    face_cascade = cv2.CascadeClassifier('modelo/haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 except Exception:
     st.write("Error loading cascade classifiers")
 
